@@ -22,6 +22,10 @@ public class DatetimePa {
 	public void setPa(float pa) {
 		this.pa = pa;
 	}
+	@Override
+	public String toString() {
+		return "[date=" + date + ", pa=" + pa + "]";
+	}
 	
 	
 }

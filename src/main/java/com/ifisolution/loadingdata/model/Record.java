@@ -1,5 +1,7 @@
 package com.ifisolution.loadingdata.model;
 
+import java.util.Arrays;
+
 public class Record {
 	
 	private DatetimePa[] datetimepas;
@@ -20,6 +22,10 @@ public class Record {
 	}
 	public void setPs(float ps) {
 		this.ps = ps;
+	}
+	@Override
+	public String toString() {
+		return "Record [datetimepas=" + datetimepas[0].toString()+", "+ datetimepas[1].toString() + ", ps=" + ps + "]";
 	}
 	
 }

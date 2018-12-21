@@ -22,30 +22,32 @@ import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.format.datetime.joda.DateTimeParser;
 
+import com.ifisolution.loadingdata.common.ConvertDate;
 import com.ifisolution.loadingdata.model.DatetimePa;
 import com.ifisolution.loadingdata.model.Record;
 import com.ifisolution.loadingdata.model.Sheet;
 
 public class ReadFileExcel {
-	List<Sheet> sheets;
-	static SimpleDateFormat simpleDateFormat= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss+0000");
+	private String filename;
+	List<String> sheets;	
 	public ReadFileExcel() {
 		sheets=new ArrayList<>();	
-		try {
+		filename="/home/fresher20/eclipse-workspace/LoadingData/src/main/java/data/data.xls";
+		/*try {
 			setSheets();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
-	public void setSheets() throws IOException{
-		FileInputStream inputStream = new FileInputStream(new File("D:\\intern\\javaifi\\eclipse_workspace\\LoadingData\\src\\main\\java\\data\\data.xls"));		  
+	/*public void setSheets() throws IOException{
+		FileInputStream inputStream = new FileInputStream(new File(filename));		  
         // Đối tượng workbook cho file XSL.
         HSSFWorkbook workbook = new HSSFWorkbook(inputStream);	 
         // Lấy ra sheet đầu tiên từ workbook
         Sheet sh;
         HSSFSheet sheet;
-        for(int i=0;i<3;i++) {
+        for(int i=0;i<1;i++) {
 	        sheet = workbook.getSheetAt(i);	
 	        sh=new Sheet();
 	        sh.setName(sheet.getSheetName());
@@ -81,15 +83,59 @@ public class ReadFileExcel {
 		    	ps=Float.parseFloat(s.substring(0, s.length()-2));
 		    	
 		    	record=new Record(datetimepa,ps);
+		    	System.out.println(count+" = "+record.toString());
 		    	records.add(record);
 		    }
-		    sh.setListRecord(records);		
-		    sheets.add(sh);
-		    System.out.println(" ban ghi trong sheet "+records.get(3).getDatetimepas()[0].getDate());
-        }        
+		    System.out.println("sheet = "+sh.getName()+": so ban ghi = "+records.size());
+		    sh.setListRecord(records);	
+		    
+		    sheets.add(sh);		    
+        }
+        workbook.close();
+	}*/
+	public List<Record> getRecordByDate(String sheetName,String date) throws IOException{
+		List<Record> records=new ArrayList<>();
+		FileInputStream inputStream = new FileInputStream(new File(filename));		  
+        // Đối tượng workbook cho file XSL.
+        HSSFWorkbook workbook = new HSSFWorkbook(inputStream);	 
+        // Lấy ra sheet đầu tiên từ workbook        
+        HSSFSheet sheet = workbook.getSheet(sheetName);	                
+	    // Lấy ra Iterator cho tất cả các dòng của sheet hiện tại.
+	    Iterator<Row> rowIterator = sheet.iterator();
+	    int count=0;
+	    Record record; 
+	    DatetimePa[] datetimepa=new DatetimePa[6];		    
+	    float ps;
+	    rowIterator.next();
+	    while (rowIterator.hasNext()) {
+	    	Row row=rowIterator.next();		    	
+	    	String s="";
+	    	if(ConvertDate.compareDate(date, row.getCell(0).getStringCellValue())!=0) continue;
+	    	for(int j=0;j<6;j++) {	    			    		
+	    		s=row.getCell(j).getStringCellValue();						//get String Date    		
+	    		Date d=ConvertDate.convert(s);				    		
+				s=row.getCell(j+6).getStringCellValue();					//get String Pa
+	    		float pa=Float.parseFloat(s.substring(0, s.length()-2));
+	    		datetimepa[j]=new DatetimePa(d,pa);
+	    	}
+	    	s=row.getCell(12).getStringCellValue();
+	    	ps=Float.parseFloat(s.substring(0, s.length()-2));
+	    	
+	    	record=new Record(datetimepa,ps);
+	    	System.out.println(count+" = "+record.toString());
+	    	records.add(record);
+	    }
+		return records;
 	}
-	
-	public List<Sheet> getSheets() { return sheets;}
+	public List<String> getSheets() throws IOException { 
+		FileInputStream inputStream = new FileInputStream(new File(filename));		  
+        // Đối tượng workbook cho file XSL.
+        HSSFWorkbook workbook = new HSSFWorkbook(inputStream);	 
+        // Lấy ra sheet đầu tiên từ workbook   
+        int numberSheet=workbook.getNumberOfSheets();
+        for(int i=0;i<numberSheet;i++) sheets.add(workbook.getSheetName(i));
+        return sheets;
+	}
 //	public static void main(String []args) throws IOException, EvaluationException {
 //		new ReadFileExcel().setSheets();
 //	}

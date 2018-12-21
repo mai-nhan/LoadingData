@@ -1,5 +1,6 @@
 package com.ifisolution.loadingdata.dao;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,22 +15,27 @@ import com.ifisolution.loadingdata.model.Sheet;
 public class RecordDAO {
 	private static ReadFileExcel readfile=new ReadFileExcel();
 	private static List<Record> listRecord=new ArrayList<Record>();
-	private static Map<String, Sheet> mapSheet=new HashMap<String, Sheet>(); 
+	//private static Map<String, Sheet> mapSheet=new HashMap<String, Sheet>(); 
 	
 	static {
-		init();
+		try {
+			init();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	private static void init() {
-		List<Sheet> sheets=readfile.getSheets();
+	private static void init() throws IOException {
+		List<String> sheets=readfile.getSheets();
 		System.out.println("so luong sheet="+sheets.size());
-		for(Sheet s:sheets) {
-			System.out.println(s.getName());
-			mapSheet.put(s.getName(), s);
+		for(String s:sheets) {
+			System.out.println("sheet"+s);
+			//mapSheet.put(s, s);
 		}
 		//listRecord=
 	}
-	public List<Record> getRecords(String sheetName){
-		return mapSheet.get(sheetName).getListRecord();
+	public List<Record> getRecordByDate(String sheetName,String date) throws IOException{
+		return readfile.getRecordByDate(sheetName, date);
 	}
 	
 }
