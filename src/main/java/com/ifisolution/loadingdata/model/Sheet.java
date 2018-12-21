@@ -1,4 +1,4 @@
-package model;
+package com.ifisolution.loadingdata.model;
 
 import java.util.ArrayList;
 

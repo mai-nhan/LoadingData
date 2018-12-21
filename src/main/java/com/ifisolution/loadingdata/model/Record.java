@@ -1,6 +1,7 @@
-package model;
+package com.ifisolution.loadingdata.model;
 
 public class Record {
+	
 	private DatetimePa[] datetimepas;
 	private float ps;
 	public Record() {}
