@@ -32,10 +32,17 @@ public class RecordDAO {
 			System.out.println("sheet"+s);
 			//mapSheet.put(s, s);
 		}
+		
 		//listRecord=
 	}
 	public List<Record> getRecordByDate(String sheetName,String date) throws IOException{
-		return readfile.getRecordByDate(sheetName, date);
+		List<Record> l=readfile.getRecordByDate(sheetName, date);
+		//for(Record r:l) System.out.println(r.toString());
+		return l; 
 	}
-	
+	public List<Record> getSheet(String sheetName) throws IOException{
+		List<Record> l=readfile.getSheet(sheetName);
+		//for(Record r:l) System.out.println(r.toString());
+		return l; 
+	}
 }

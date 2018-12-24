@@ -24,13 +24,15 @@ public class LoadingDataController {
 	
 	@RequestMapping(value ="/records/{sheetName}",
 			method = RequestMethod.GET, //
-            produces = { MediaType.APPLICATION_JSON_VALUE, //
-                    MediaType.APPLICATION_XML_VALUE })
+            produces = {MediaType.APPLICATION_JSON_VALUE, //
+                    MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
-    public List<Record> getRecords(@PathVariable("sheetName") String sheetName,@RequestParam(value="date") String date) throws IOException {
+    public List<Record> getRecordByDate(@PathVariable("sheetName") String sheetName,@RequestParam(value="date", defaultValue="all") String date) throws IOException {
  
-        System.out.println("(Service Side) get record by sheet: " + sheetName);
- 
+        System.out.println("(Service Side) get record by sheet and date: " + sheetName);
+        if(date.equals("all")) return recordDao.getSheet(sheetName);
         return recordDao.getRecordByDate(sheetName, date);
     }
+	
+	
 }
