@@ -27,10 +27,10 @@ public class LoadingDataController {
             produces = { MediaType.APPLICATION_JSON_VALUE, //
                     MediaType.APPLICATION_XML_VALUE })
     @ResponseBody
-    public List<Record> getRecords(@PathVariable("sheetName") String sheetName,@RequestParam(value="date") String date) throws IOException {
+    public List<Record> getRecords(@PathVariable("sheetName") String sheetName) throws IOException {
  
         System.out.println("(Service Side) get record by sheet: " + sheetName);
  
-        return recordDao.getRecordByDate(sheetName, date);
+        return recordDao.getRecordByDate(sheetName, "2016-10-24");
     }
 }

@@ -35,7 +35,9 @@ public class RecordDAO {
 		//listRecord=
 	}
 	public List<Record> getRecordByDate(String sheetName,String date) throws IOException{
-		return readfile.getRecordByDate(sheetName, date);
+		List<Record> l=readfile.getRecordByDate(sheetName, date);
+		for(Record r:l) System.out.println(r.toString());
+		return l; 
 	}
 	
 }
