@@ -1,31 +1,32 @@
 package com.ifisolution.loadingdata.model;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Record {
 	
-	private DatetimePa[] datetimepas;
-	private float ps;
+	private List<DatetimePa> datetimepas;
+	private String ps;
 	public Record() {}
-	public Record(DatetimePa[] datetimepas, float ps) {
+	public Record(List<DatetimePa> datetimepas, String ps) {
 		this.datetimepas = datetimepas;
 		this.ps = ps;
 	}
-	public DatetimePa[] getDatetimepas() {
+	public List<DatetimePa> getDatetimepas() {
 		return datetimepas;
 	}
-	public void setDatetimepas(DatetimePa[] datetimepas) {
+	public void setDatetimepas(List<DatetimePa> datetimepas) {
 		this.datetimepas = datetimepas;
 	}
-	public float getPs() {
+	public String getPs() {
 		return ps;
 	}
-	public void setPs(float ps) {
+	public void setPs(String ps) {
 		this.ps = ps;
 	}
 	@Override
 	public String toString() {
-		return "Record [datetimepas=" + datetimepas[0].toString()+", "+ datetimepas[1].toString() + ", ps=" + ps + "]";
+		return "Record [datetimepas=" + datetimepas.toString() + ", ps=" + ps + "]";
 	}
 	
 }

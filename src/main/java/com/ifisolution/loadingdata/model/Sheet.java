@@ -1,10 +1,11 @@
 package com.ifisolution.loadingdata.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Sheet {
 	private String name;
-	private ArrayList<Record> listRecord;
+	private List<Record> listRecord;
 	
 	public Sheet() {
 		listRecord=new ArrayList<>();
@@ -23,7 +24,7 @@ public class Sheet {
 		this.name = name;
 	}
 
-	public ArrayList<Record> getListRecord() {
+	public List<Record> getListRecord() {
 		return listRecord;
 	}
 
