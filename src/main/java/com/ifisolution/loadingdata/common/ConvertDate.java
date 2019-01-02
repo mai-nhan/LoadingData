@@ -17,7 +17,9 @@ public class ConvertDate {
 		}
 		return d;
 	}
-	
+	public static String formatDate(String date) {
+		return simpleDate.format(convert(date));
+	}
 	public static int compareDate(String d1,String d2) {		
 		return d2.compareTo(simpleDate.format(convert(d1)));
 	}

@@ -5,15 +5,19 @@ import java.util.List;
 
 public class Sheet {
 	private String name;
-	private List<Record> listRecord;
+	private List<Float> listPa;
+	private List<String> date;
 	
 	public Sheet() {
-		listRecord=new ArrayList<>();
+		listPa=new ArrayList<Float>();
+		date=new ArrayList<String>();
 	}
 
-	public Sheet(String name, ArrayList<Record> listRecord) {		
+	public Sheet(String name,List<Float> listPa,List<String> date) {
+		super();
 		this.name = name;
-		this.listRecord = listRecord;
+		this.listPa = listPa;
+		this.date = date;
 	}
 
 	public String getName() {
@@ -24,12 +28,20 @@ public class Sheet {
 		this.name = name;
 	}
 
-	public List<Record> getListRecord() {
-		return listRecord;
+	public List<Float> getListPa() {
+		return listPa;
 	}
 
-	public void setListRecord(ArrayList<Record> listRecord) {
-		this.listRecord = listRecord;
+	public void setListPa(ArrayList<Float> listPa) {
+		this.listPa = listPa;
+	}
+
+	public List<String> getDate() {
+		return date;
+	}
+
+	public void setDate(ArrayList<String> date) {
+		this.date = date;
 	}
 	
 	
