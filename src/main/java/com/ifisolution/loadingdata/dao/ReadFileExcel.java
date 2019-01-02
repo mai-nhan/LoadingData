@@ -23,10 +23,10 @@ import com.ifisolution.loadingdata.model.Sheet;
 
 public class ReadFileExcel {
 	private String filename;
-	List<String> sheets;	
-	public ReadFileExcel() {
-		sheets=new ArrayList<>();	
-		filename="D:\\intern\\javaifi\\eclipse_workspace\\LoadingData\\src\\main\\java\\data\\data.xls";
+		
+	public ReadFileExcel() {	
+		File directory = new File("");
+		filename = directory.getAbsolutePath() + "/src/main/java/data/data.xls";		
 		/*try {
 			setSheets();
 		} catch (IOException e) {
@@ -65,6 +65,7 @@ public class ReadFileExcel {
 		FileInputStream inputStream = new FileInputStream(new File(filename));		  
         HSSFWorkbook workbook = new HSSFWorkbook(inputStream);	 
         int numberSheet=workbook.getNumberOfSheets();
+        List<String> sheets=new ArrayList<>();	
         for(int i=0;i<numberSheet;i++) sheets.add(workbook.getSheetName(i));
         return sheets;
 	}
@@ -93,16 +94,5 @@ public class ReadFileExcel {
 	    	    
 		return records;
 	}
-//	public static void main(String []args) throws IOException, EvaluationException {
-//		//List<Record> l=new ReadFileExcel().getRecordByDate("ENR062A3", "2016-10-24");
-//		SimpleDateFormat simpleDateFormat= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		try {
-//			Date d=simpleDateFormat.parse("2016-10-24 23:50:00+0000");
-//			System.out.println(d);
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//	}
+
 }
