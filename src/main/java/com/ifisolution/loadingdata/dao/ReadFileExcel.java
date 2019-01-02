@@ -19,12 +19,13 @@ import org.apache.poi.ss.usermodel.Row;
 import com.ifisolution.loadingdata.common.ConvertDate;
 import com.ifisolution.loadingdata.model.DatetimePa;
 import com.ifisolution.loadingdata.model.Record;
-import com.ifisolution.loadingdata.model.Sheet;
+
 
 public class ReadFileExcel {
 	private String filename;
 		
 	public ReadFileExcel() {	
+<<<<<<< HEAD
 		File directory = new File("");
 		filename = directory.getAbsolutePath() + "/src/main/java/data/data.xls";		
 		/*try {
@@ -33,6 +34,10 @@ public class ReadFileExcel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
+=======
+		File file=new File("");
+		filename=file.getAbsolutePath()+"\\src\\main\\java\\data\\data.xls";		
+>>>>>>> b736fa41cfcd2da81b313a6248214051e8652603
 	}
 	
 	public List<Record> getRecordByDate(String sheetName,String date) throws IOException{

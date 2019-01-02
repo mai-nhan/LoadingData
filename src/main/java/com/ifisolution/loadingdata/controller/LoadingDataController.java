@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ifisolution.loadingdata.dao.RecordDAO;
 import com.ifisolution.loadingdata.model.Record;
+import com.ifisolution.loadingdata.model.Sheet;
 
 @RestController
 @RequestMapping("/services")
@@ -42,7 +42,11 @@ public class LoadingDataController {
                     MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
 
+<<<<<<< HEAD
     public List<Float> getPaPerDay(@PathVariable("sheetName") String sheetName) throws IOException {
+=======
+    public Sheet getPaPerDay(@PathVariable("sheetName") String sheetName) throws IOException {
+>>>>>>> b736fa41cfcd2da81b313a6248214051e8652603
  
         System.out.println("(Service Side) get pa by sheet : " + sheetName);
         System.out.println("test pa ngay 24-10="+recordDao.getPaPerDay(sheetName, "2016-10-24"));
