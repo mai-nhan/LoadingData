@@ -2,15 +2,15 @@ package com.ifisolution.loadingdata.dao;
 
 import java.io.IOException;
 import java.util.ArrayList;
-<<<<<<< HEAD
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-=======
+
 import java.util.Collections;
 import java.util.Comparator;
->>>>>>> b736fa41cfcd2da81b313a6248214051e8652603
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ifisolution.loadingdata.common.ConvertDate;
 import com.ifisolution.loadingdata.model.Record;
+import com.ifisolution.loadingdata.model.Sheet;
 
 @Repository
 public class RecordDAO {
@@ -66,11 +67,9 @@ public class RecordDAO {
 		}
 		return paPerDay/6;
 	}
-<<<<<<< HEAD
-	public List<Float> getPaPerDays(String sheetName) throws IOException{
-=======
+
 	public Sheet getPaPerDays(String sheetName) throws IOException{
->>>>>>> b736fa41cfcd2da81b313a6248214051e8652603
+
 		List<Float> listPPD=new ArrayList<>();
 		List<String> listDate=new ArrayList<>();
 		Map<String,Float> map=new HashMap<>();
@@ -102,11 +101,9 @@ public class RecordDAO {
 		for(String s:listDate) {
 			listPPD.add(map.get(s));			
 		}
-<<<<<<< HEAD
-		return listPPD;
-=======
+
 		return (new Sheet(sheetName,listPPD,listDate));
->>>>>>> b736fa41cfcd2da81b313a6248214051e8652603
+
 	}
 	public float convertPa(String pa) {
 		return Float.parseFloat(pa.substring(0, pa.length()-2));

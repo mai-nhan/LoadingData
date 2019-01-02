@@ -41,17 +41,11 @@ public class LoadingDataController {
             produces = {MediaType.APPLICATION_JSON_VALUE, //
                     MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
-
-<<<<<<< HEAD
-    public List<Float> getPaPerDay(@PathVariable("sheetName") String sheetName) throws IOException {
-=======
-    public Sheet getPaPerDay(@PathVariable("sheetName") String sheetName) throws IOException {
->>>>>>> b736fa41cfcd2da81b313a6248214051e8652603
- 
+    
+    public Sheet getPaPerDay(@PathVariable("sheetName") String sheetName) throws IOException { 
         System.out.println("(Service Side) get pa by sheet : " + sheetName);
         System.out.println("test pa ngay 24-10="+recordDao.getPaPerDay(sheetName, "2016-10-24"));
         return recordDao.getPaPerDays(sheetName);
-
     }
 	@RequestMapping(value ="/pa_weekly/",
 			method = RequestMethod.GET, //
